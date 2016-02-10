@@ -1,0 +1,4 @@
+cron:
+- description: photos
+  url: /_ah/cron/photos/aggregate
+  schedule: every day 01:00
