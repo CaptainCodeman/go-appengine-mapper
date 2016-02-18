@@ -18,6 +18,13 @@ func init() {
 
 func warmupHandler(c *echo.Context) error {
 	if appengine.IsDevAppServer() {
+		k := datastore.NewKey(c, "photo", "", 1, nil)
+		p := new(Photo)
+		err := nds.Get(c, k, p)
+		if err != datastore.ErrNoSuchEntity {
+			return c.NoContent(http.StatusOK)
+		}
+
 		photographers := []Photographer {
 			{1, "Mr Canon"},
 			{2, "Miss Nikon"},
@@ -26,20 +33,21 @@ func warmupHandler(c *echo.Context) error {
 		}
 
 		// create some dummy data
+		var id int64
 		for m := 1; m <= 12; m++ {
 			for d := 1; d < 28; d++ {
 				taken := time.Date(2015, time.Month(m), d, 12, 0, 0, 0, time.UTC)
-				id := rand.Int31n(4)
-				photographer := photographers[id]
-				p := Photo{
+				photographer := photographers[rand.Int31n(4)]
+				p = &Photo{
 					Photographer: photographer,
 					Uploaded    : time.Now().UTC(),
 					Width       : 8000,
 					Height      : 6000,
 					Taken       : taken,
 				}
-				k := datastore.NewIncompleteKey(c, "photo", nil)
-				nds.Put(c, k, &p)
+				id++
+				k = datastore.NewKey(c, "photo", "", id, nil)
+				nds.Put(c, k, p)
 			}
 		}
 	}

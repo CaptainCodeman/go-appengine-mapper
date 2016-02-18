@@ -33,15 +33,15 @@ Run with dev server:
 
 Log all entities from 2015 on ...
 
-    http://localhost:8080/_ah/cron/photos/log?from=2015-01-01
+    http://localhost:8080/_ah/cron/process/logPhotos?from=2015-01-01
 
 Log all entities for Jan 2015 only ...
 
-    http://localhost:8080/_ah/cron/photos/log?from=2015-01-01&to=2015-02-01
+    http://localhost:8080/_ah/cron/process/logPhotos?from=2015-01-01&to=2015-02-01
 
 Aggregate all entities from 2015 on ...
 
-    http://localhost:8080/_ah/cron/photos/aggregate?from=2015-01-01
+    http://localhost:8080/_ah/cron/process/aggregatePhotos?from=2015-01-01
 
 ## Notes for demo
 
