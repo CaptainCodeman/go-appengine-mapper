@@ -1,5 +1,7 @@
 # Go AppEngine Mapper
 
+NOTE: Superseded by the more feature complete [datastore-mapper](https://github.com/CaptainCodeman/datastore-mapper).
+
 Example of using Go (Golang) to iterate over entities to process or aggregate them.
 
 Iteration handling is reused so new processor just involves implementing a struct to match the interface.
